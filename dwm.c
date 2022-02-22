@@ -1921,7 +1921,7 @@ updatebars(void)
 			continue;
 		m->barwin = XCreateWindow(dpy, root, m->wx, m->by, m->ww, bh, 0, depth,
                 InputOutput, visual,
-				CWOverrideRedirect|CWBackPixmap|CWBorderPixel|CWColorMap|CWEventMask, &wa);
+				CWOverrideRedirect|CWBackPixmap|CWBorderPixel|CWColormap|CWEventMask, &wa);
 		XDefineCursor(dpy, m->barwin, cursor[CurNormal]->cursor);
 		XMapRaised(dpy, m->barwin);
 		XSetClassHint(dpy, m->barwin, &ch);
