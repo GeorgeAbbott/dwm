@@ -1910,7 +1910,7 @@ updatebars(void)
 	Monitor *m;
 	XSetWindowAttributes wa = {
 		.override_redirect = True,
-		.background_pixmap = 0,
+		.background_pixel = 0,
         .border_pixel = 0,
         .colormap = cmap,
 		.event_mask = ButtonPressMask|ExposureMask
@@ -1921,7 +1921,7 @@ updatebars(void)
 			continue;
 		m->barwin = XCreateWindow(dpy, root, m->wx, m->by, m->ww, bh, 0, depth,
                 InputOutput, visual,
-				CWOverrideRedirect|CWBackPixmap|CWBorderPixel|CWColormap|CWEventMask, &wa);
+				CWOverrideRedirect|CWBackPixel|CWBorderPixel|CWColormap|CWEventMask, &wa);
 		XDefineCursor(dpy, m->barwin, cursor[CurNormal]->cursor);
 		XMapRaised(dpy, m->barwin);
 		XSetClassHint(dpy, m->barwin, &ch);
@@ -2357,7 +2357,7 @@ void xinitvisual()
 
     XVisualInfo tpl = {
         .screen = screen,
-        .depth = depth,
+        .depth = 32,
         .class = TrueColor
     };
     long masks = VisualScreenMask | VisualDepthMask | VisualClassMask;
