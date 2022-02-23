@@ -17,15 +17,25 @@ static const unsigned int baralpha    = 0xd0;
 static const unsigned int borderalpha = OPAQUE;
 
 static const char *colors[][3]        = {
-	/*               fg         bg         border   */
-	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
-	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+	/*                     fg         bg         border   */
+	[SchemeNorm]       = { col_gray3, col_gray1, col_gray2 }, 
+	[SchemeSel]        = { col_gray4, col_cyan,  col_cyan  },
+    [SchemeStatus]     = { col_gray3, col_gray1, "#000000" }, // statusbar right
+    [SchemeTagsSel]    = { col_gray4, col_cyan,  "#000000" }, // tagsbar left
+    [SchemeTagsNorm]   = { col_gray3, col_gray1, "#000000" },
+    [SchemeInfoSel]    = { col_gray4, col_cyan,  "#000000" }, // infobar middle
+    [SchemeInfoNorm]   = { col_gray3, col_gray1, "#000000" },
 };
 
 static const unsigned int alphas[][3] = {
     /*               fg          bg         border      */
-    [SchemeNorm] = { OPAQUE,     baralpha,  borderalpha },
-    [SchemeSel]  = { OPAQUE,     baralpha,  borderalpha },
+    [SchemeNorm]       = { OPAQUE,     baralpha,  borderalpha },
+    [SchemeSel]        = { OPAQUE,     baralpha,  borderalpha },
+    [SchemeTagsSel]    = { OPAQUE,     baralpha,  borderalpha }, // tagsbar left
+    [SchemeTagsNorm]   = { OPAQUE,     baralpha,  borderalpha },
+    [SchemeInfoSel]    = { OPAQUE,     baralpha,  borderalpha }, // infobar middle
+    [SchemeInfoNorm]   = { OPAQUE,     baralpha,  borderalpha },
+};
 };
 
 /* tagging */
