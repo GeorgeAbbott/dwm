@@ -18,13 +18,13 @@ static const unsigned int borderalpha = OPAQUE;
 
 static const char *colors[][3]        = {
 	/*                     fg         bg         border   */
-	[SchemeNorm]       = { col_gray3, col_gray1, col_gray2 }, 
-	[SchemeSel]        = { col_gray4, col_cyan,  col_cyan  },
-    [SchemeStatus]     = { col_gray3, col_gray1, "#000000" }, // statusbar right
-    [SchemeTagsSel]    = { col_gray4, col_cyan,  "#000000" }, // tagsbar left
-    [SchemeTagsNorm]   = { col_gray3, col_gray1, "#000000" },
-    [SchemeInfoSel]    = { col_gray4, col_cyan,  "#000000" }, // infobar middle
-    [SchemeInfoNorm]   = { col_gray3, col_gray1, "#000000" },
+	[SchemeNorm]       = { "#000000", "#ffff00", col_gray2 }, 
+	[SchemeSel]        = { "#000000", "#ff00ff",  col_cyan  },
+    [SchemeStatus]     = { "#000000", "#ffffff", "#000000" }, // statusbar right
+    [SchemeTagsSel]    = { "#000000", "#ff0000",  "#000000" }, // tagsbar left
+    [SchemeTagsNorm]   = { "#000000", "#00ff00", "#000000" },
+    [SchemeInfoSel]    = { "#000000", "#0000ff",  "#000000" }, // infobar middle
+    [SchemeInfoNorm]   = { "#000000", "#00ffff", "#000000" },
 };
 
 static const unsigned int alphas[][3] = {
@@ -35,7 +35,6 @@ static const unsigned int alphas[][3] = {
     [SchemeTagsNorm]   = { OPAQUE,     baralpha,  borderalpha },
     [SchemeInfoSel]    = { OPAQUE,     baralpha,  borderalpha }, // infobar middle
     [SchemeInfoNorm]   = { OPAQUE,     baralpha,  borderalpha },
-};
 };
 
 /* tagging */
