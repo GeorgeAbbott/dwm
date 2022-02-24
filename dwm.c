@@ -805,6 +805,9 @@ drawbar(Monitor *m)
 		drw_text(drw, m->ww - tw, 0, tw, bh, 0, stext, 0);
 	}
 
+    for (i = 0; i < LENGTH(tags); i++)
+        masterclientontag[i] = NULL;
+
 	for (c = m->clients; c; c = c->next) {
 		occ |= c->tags == 255 ? 0 : c->tags;
 		if (c->isurgent)
