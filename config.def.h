@@ -73,7 +73,7 @@ static const Rule rules[] = {
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
     { NULL,		  "spterm",		NULL,		SPTAG(0),		1, 0, 1,			 -1 },
     { NULL,		  "spfm",		NULL,		SPTAG(1),		1, 0, 1			 -1 },
-    { NULL,		  "keepassxc",	NULL,		SPTAG(2),		0, 0, 1			 -1 },
+    { NULL,		  "keepassxc",	NULL,		SPTAG(2),		1, 0, 1			 -1 },
 
 
 
