@@ -86,6 +86,8 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
 #include "layouts/fibonacci.c"
+#include "layouts/bstack.c"
+#include "layouts/centeredmaster.c"
 #include "layouts/tatami.c"
 #include "layouts/layouts.c"
 #include "layouts/gaplessgrid.c"
