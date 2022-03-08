@@ -516,10 +516,7 @@ buttonpress(XEvent *e)
 	}
 	if (ev->window == selmon->barwin) {
 		i = x = 0;
-		do
-			x += TEXTW(tags[i]);
-		while (ev->x >= x && ++i < LENGTH(tags));
-
+        /* Added for hidevacanttags */
         for (c = m->clients; c; c = c->next)
             occ |= c->tags == 255 ? 0 : c->tags;
         do {
