@@ -68,6 +68,7 @@ static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen win
 #include "fibonacci.c"
 #include "tatami.c"
 #include "layouts.c"
+#include "gaplessgrid.c"
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
@@ -82,6 +83,7 @@ static const Layout layouts[] = {
     { "|M|",      centeredmaster },
     { ">M>",      centeredfloatingmaster },
     { "HHH",      grid },
+    { "###",      gaplessgrid }, // TODO: find the proper symbol for this
 };
 
 /* key definitions */
@@ -127,6 +129,7 @@ static Key keys[] = {
     { MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[8]} },
     { MODKEY|ShiftMask,             XK_o,      setlayout,      {.v = &layouts[9]} },
     { MODKEY,                       XK_g,      setlayout,      {.v = &layouts[10]} },
+    { MODKEY|ShiftMask,             XK_g,      setlayout,      {.v = &layouts[11]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
