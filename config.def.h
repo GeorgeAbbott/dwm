@@ -37,6 +37,20 @@ static const unsigned int alphas[][3] = {
     [SchemeInfoNorm]   = { OPAQUE,     baralpha,  borderalpha },
 };
 
+typedef struct {
+	const char *name;
+	const void *cmd;
+} Sp;
+const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
+const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "ranger", NULL };
+const char *spcmd3[] = {"keepassxc", NULL };
+static Sp scratchpads[] = {
+	/* name          cmd  */
+	{"spterm",      spcmd1},
+	{"spranger",    spcmd2},
+	{"keepassxc",   spcmd3},
+};
+                                                                                   
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
@@ -57,6 +71,12 @@ static const Rule rules[] = {
 	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
 	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
 	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+    { NULL,		  "spterm",		NULL,		SPTAG(0),		1, 0, 1,			 -1 },
+    { NULL,		  "spfm",		NULL,		SPTAG(1),		1, 0, 1			 -1 },
+    { NULL,		  "keepassxc",	NULL,		SPTAG(2),		0, 0, 1			 -1 },
+
+
+
 };
 
 /* layout(s) */
@@ -127,12 +147,18 @@ static Key keys[] = {
     { MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
     { MODKEY,                       XK_r,      setlayout,      {.v = &layouts[5]} },
     { MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[6]} },
-    { MODKEY,                       XK_y,      setlayout,      {.v = &layouts[7]} },
-    { MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[8]} },
-    { MODKEY|ShiftMask,             XK_o,      setlayout,      {.v = &layouts[9]} },
-    { MODKEY,                       XK_g,      setlayout,      {.v = &layouts[10]} },
-    { MODKEY|ShiftMask,             XK_g,      setlayout,      {.v = &layouts[11]} },
-    { MODKEY|ShiftMask,             XK_h,      setlayout,      {.v = &layouts[12]} },
+    // { MODKEY,                       XK_y,      setlayout,      {.v = &layouts[7]} },
+    // { MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[8]} },
+    // { MODKEY|ShiftMask,             XK_o,      setlayout,      {.v = &layouts[9]} },
+    // { MODKEY,                       XK_g,      setlayout,      {.v = &layouts[10]} },
+    // { MODKEY|ShiftMask,             XK_g,      setlayout,      {.v = &layouts[11]} },
+    // { MODKEY|ShiftMask,             XK_h,      setlayout,      {.v = &layouts[12]} },
+
+    /* Scratchpads */
+    { MODKEY,                       XK_y,      togglescratch,  {.ui = 0 } },
+    { MODKEY,                       XK_u,      togglescratch,  {.ui = 1 } },
+    { MODKEY,                       XK_x,      togglescratch,  {.ui = 2 } },
+
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
@@ -163,7 +189,7 @@ static Button buttons[] = {
 	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
 	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
 	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
+	{ ClkClientWin,         MODKEY,         Button1,        resizemouse,    {0} },
 	{ ClkTagBar,            0,              Button1,        view,           {0} },
 	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
