@@ -11,8 +11,8 @@ static       int smartgaps          = 0;        /* 1 means no outer gap when the
 static const int swallowfloating      = 0;        /* 1 means swallow floating windows by default */
 static const int showbar              = 1;        /* 0 means no bar */
 static const int topbar               = 1;        /* 0 means bottom bar */
-static const char *fonts[]            = { "Ubuntu Mono:size=10" };
-static const char dmenufont[]         =   "Ubuntu Mono:size=10"  ;
+static const char *fonts[]            = { "UbuntuMono Nerd Font Mono:size=11" };
+static const char dmenufont[]         =   "UbuntuMono Nerd Font Mono:size=11"  ;
 static const char col_gray1[]         = "#222222";
 static const char col_gray2[]         = "#444444";
 static const char col_gray3[]         = "#bbbbbb";
@@ -49,11 +49,13 @@ typedef struct {
 const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
 const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "ranger", NULL };
 const char *spcmd3[] = {"keepassxc", NULL };
+const char *spcmd4[] = {"st", "-n", "spmp", "-g", "144x41", "-e", "ncmpcpp", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
 	{"spranger",    spcmd2},
 	{"keepassxc",   spcmd3},
+    {"spncmpcpp",   spcmd4},
 };
                                                                                    
 /* tagging */
@@ -79,6 +81,7 @@ static const Rule rules[] = {
     { NULL,		  "spterm",		NULL,		SPTAG(0),		1, 0, 1,			 -1 },
     { NULL,		  "spfm",		NULL,		SPTAG(1),		1, 0, 1			 -1 },
     { NULL,		  "keepassxc",	NULL,		SPTAG(2),		1, 0, 1			 -1 },
+    { NULL,       "spmp",  NULL,       SPTAG(3),       1, 0, 1,         -1 },
 
 
 
@@ -186,6 +189,7 @@ static Key keys[] = {
     { MODKEY,                       XK_z,      togglescratch,  {.ui = 0 } },
     { MODKEY,                       XK_x,      togglescratch,  {.ui = 1 } },
     { MODKEY,                       XK_c,      togglescratch,  {.ui = 2 } },
+    { MODKEY,                       XK_v,      togglescratch,  {.ui = 3 } },
 
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
