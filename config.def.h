@@ -11,29 +11,29 @@ static       int smartgaps          = 0;        /* 1 means no outer gap when the
 static const int swallowfloating      = 0;        /* 1 means swallow floating windows by default */
 static const int showbar              = 1;        /* 0 means no bar */
 static const int topbar               = 1;        /* 0 means bottom bar */
-static const char *fonts[]            = { "Ubuntu Mono:size=10" };
-static const char dmenufont[]         =   "Ubuntu Mono:size=10"  ;
+static const char *fonts[]            = { "UbuntuMono Nerd Font Mono:size=11" };
+static const char dmenufont[]         =   "UbuntuMono Nerd Font Mono:size=11"  ;
 static const char col_gray1[]         = "#222222";
 static const char col_gray2[]         = "#444444";
 static const char col_gray3[]         = "#bbbbbb";
 static const char col_gray4[]         = "#eeeeee";
 static const char col_cyan[]          = "#005577";
-static const unsigned int baralpha    = 0xd0;
+static const unsigned int baralpha    = 0x60;
 static const unsigned int borderalpha = OPAQUE;
 
 static const char *colors[][3]        = {
 	/*                     fg         bg         border   */
-	[SchemeNorm]       = { "#000000", "#ffff00", col_gray2 }, 
-	[SchemeSel]        = { "#000000", "#ff00ff",  col_cyan  },
-    [SchemeStatus]     = { "#000000", "#ffffff", "#000000" }, // statusbar right
-    [SchemeTagsSel]    = { "#000000", "#ff0000",  "#000000" }, // tagsbar left
-    [SchemeTagsNorm]   = { "#000000", "#00ff00", "#000000" },
-    [SchemeInfoSel]    = { "#000000", "#0000ff",  "#000000" }, // infobar middle
-    [SchemeInfoNorm]   = { "#000000", "#00ffff", "#000000" },
+	[SchemeNorm]       = { "#000000", "#029c91", col_gray2 }, 
+	[SchemeSel]        = { "#000000", "#00b35a",  col_cyan  }, 
+    [SchemeStatus]     = { "#000000", "#029c91", "#000000" }, // statusbar right
+    [SchemeTagsSel]    = { "#000000", "#00b35a",  "#000000" }, // tagsbar left
+    [SchemeTagsNorm]   = { "#000000", "#029c91", "#000000" },
+    [SchemeInfoSel]    = { "#000000", "#029c91",  "#000000" }, // infobar middle
+    [SchemeInfoNorm]   = { "#000000", "#029c91", "#000000" },
 };
 
 static const unsigned int alphas[][3] = {
-    /*               fg          bg         border      */
+    /*                     fg          bg         border      */
     [SchemeNorm]       = { OPAQUE,     baralpha,  borderalpha },
     [SchemeSel]        = { OPAQUE,     baralpha,  borderalpha },
     [SchemeTagsSel]    = { OPAQUE,     baralpha,  borderalpha }, // tagsbar left
@@ -49,11 +49,13 @@ typedef struct {
 const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
 const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "ranger", NULL };
 const char *spcmd3[] = {"keepassxc", NULL };
+const char *spcmd4[] = {"st", "-n", "spmp", "-g", "144x41", "-e", "ncmpcpp", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
 	{"spranger",    spcmd2},
 	{"keepassxc",   spcmd3},
+    {"spncmpcpp",   spcmd4},
 };
                                                                                    
 /* tagging */
@@ -71,14 +73,19 @@ static const Rule rules[] = {
 	 *	WM_CLASS(STRING) = instance, class
 	 *	WM_NAME(STRING) = title
 	 */
-	/* class     instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",    NULL,     NULL,           0,         1,          0,           0,        -1 },
-	{ "Firefox", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
-	{ "St",      NULL,     NULL,           0,         0,          1,           0,        -1 },
-	{ NULL,      NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
-    { NULL,		  "spterm",		NULL,		SPTAG(0),		1, 0, 1,			 -1 },
-    { NULL,		  "spfm",		NULL,		SPTAG(1),		1, 0, 1			 -1 },
-    { NULL,		  "keepassxc",	NULL,		SPTAG(2),		1, 0, 1			 -1 },
+	/* class      instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
+	{ "Gimp",      NULL,     NULL,           0,         1,          0,           0,        -1 },
+	{ "LibreWolf", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
+    { "librewolf", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
+	{ "st",        NULL,     NULL,           0,         0,          1,           0,        -1 },
+    { "discord",   NULL,     NULL,           1 << 5,    0,          0,          -1,        -1 },
+
+    { NULL,        NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
+   
+    { NULL,		   "spterm",		NULL,		SPTAG(0),		1, 0, 1,			 -1 },
+    { NULL,		   "spfm",		NULL,		SPTAG(1),		1, 0, 1			 -1 },
+    { NULL,		   "keepassxc",	NULL,		SPTAG(2),		1, 0, 1			 -1 },
+    { NULL,        "spmp",  NULL,       SPTAG(3),       1, 0, 1,         -1 },
 
 
 
@@ -187,6 +194,7 @@ static Key keys[] = {
     { MODKEY,                       XK_z,      togglescratch,  {.ui = 0 } },
     { MODKEY,                       XK_x,      togglescratch,  {.ui = 1 } },
     { MODKEY,                       XK_c,      togglescratch,  {.ui = 2 } },
+    { MODKEY,                       XK_v,      togglescratch,  {.ui = 3 } },
 
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
