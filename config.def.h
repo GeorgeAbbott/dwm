@@ -146,8 +146,7 @@ static const char *slockcmd[] = { "slock", NULL };
 // Commands to change volume
 static const char *audioupcmd[] = { "change-audio", "2dB+", "unmute" };
 static const char *audiodncmd[] = { "change-audio", "2dB-", "unmute" };
-static const char *audiomtcmd[] = { "change-audio", "unmute" };
-static const char *audiounmtcmd[] = { "change-audio", "mute" };
+static const char *audiomtcmd[] = { "change-audio", "toggle" };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -208,7 +207,6 @@ static Key keys[] = {
     { MODKEY,                       XK_F5,     spawn,          {.v = audiodncmd } },
     { MODKEY,                       XK_F6,     spawn,          {.v = audioupcmd } },
     { MODKEY,                       XK_F3,     spawn,          {.v = audiomtcmd } },
-    { MODKEY,                       XK_F4,     spawn,          {.v = audiounmtcmd } },
 
 
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
