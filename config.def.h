@@ -143,6 +143,12 @@ static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont,
 static const char *termcmd[]  = { "st", NULL };
 static const char *slockcmd[] = { "slock", NULL };
 
+// Commands to change volume
+static const char *audioupcmd[] = { "change-audio", "2dB+", "unmute" };
+static const char *audiodncmd[] = { "change-audio", "2dB-", "unmute" };
+static const char *audiomtcmd[] = { "change-audio", "unmute" };
+static const char *audiounmtcmd[] = { "change-audio", "mute" };
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -197,6 +203,13 @@ static Key keys[] = {
     { MODKEY,                       XK_x,      togglescratch,  {.ui = 1 } },
     { MODKEY,                       XK_c,      togglescratch,  {.ui = 2 } },
     { MODKEY,                       XK_v,      togglescratch,  {.ui = 3 } },
+
+    /* Shortcuts - Audio */
+    { MODKEY,                       XK_F5,     spawn,          {.v = audiodncmd } },
+    { MODKEY,                       XK_F6,     spawn,          {.v = audioupcmd } },
+    { MODKEY,                       XK_F3,     spawn,          {.v = audiomtcmd } },
+    { MODKEY,                       XK_F4,     spawn,          {.v = audiounmtcmd } },
+
 
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
