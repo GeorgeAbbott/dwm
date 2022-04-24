@@ -150,6 +150,10 @@ static const char *audioupcmd[] = { "change-audio", "2dB+", "unmute" };
 static const char *audiodncmd[] = { "change-audio", "2dB-", "unmute" };
 static const char *audiomtcmd[] = { "change-audio", "toggle" };
 
+// Commands to change brightness
+static const char *lightupcmd[] = { "change-light", "dec", "5" };
+static const char *lightdncmd[] = { "change-light", "inc", "5" };
+
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
@@ -209,6 +213,10 @@ static Key keys[] = {
     { MODKEY,                       XK_F5,     spawn,          {.v = audiodncmd } },
     { MODKEY,                       XK_F6,     spawn,          {.v = audioupcmd } },
     { MODKEY,                       XK_F3,     spawn,          {.v = audiomtcmd } },
+
+    /* Shortcuts - Brightness */
+    { MODKEY,                       XK_F8,     spawn,          {.v = lightupcmd } },
+    { MODKEY,                       XK_F9,     spawn,          {.v = lightdncmd } },
 
 
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
