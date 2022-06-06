@@ -24,6 +24,15 @@ static const char col_cyan[]          = "#005577";
 static const unsigned int baralpha    = 0xcc;
 static const unsigned int borderalpha = OPAQUE;
 
+/* underlining */
+static const unsigned int ulinepad    = 5; /* horizontal padding btw underline & tag */
+static const unsigned int ulinestroke = 2; /* thickness/height of underline */
+static const unsigned int ulinevoffset= 0; /* how far above the bottom of the bar the line should appear */
+static const int ulineall             = 0; /* 1 show on all, 0 on just active */
+static const int showuline            = 1; /* whether to show uline altogether */
+
+
+
 static const char *colors[][3]        = {
 	/*                     fg         bg         border   */
 	[SchemeNorm]       = { "#000000", "#00e200", "#003200" }, 

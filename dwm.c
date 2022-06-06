@@ -868,6 +868,10 @@ drawbar(Monitor *m)
 
 		drw_setscheme(drw, scheme[m->tagset[m->seltags] & 1 << i ? SchemeTagsSel : SchemeTagsNorm]);
 		drw_text(drw, x, 0, w, bh, lrpad / 2, masterclientontag[i], urg & 1 << i);
+        if (showuline && ( ulineall || m->tagset[m->seltags] & 1 << i) ) {
+            drw_rect(drw, x + ulinepad, bh - ulinestroke - ulinevoffset, 
+                    w - (ulinepad * 2), ulinestroke, 1, 0);
+        }
 		x += w;
 	}
 	w = blw = TEXTW(m->ltsymbol);
