@@ -12,16 +12,16 @@ static const int swallowfloating      = 0;        /* 1 means swallow floating wi
 static const int showbar              = 1;        /* 0 means no bar */
 static const int topbar               = 1;        /* 0 means bottom bar */
 static const char *fonts[]            = { 
-                                          "CaskaydiaCove Nerd Font Mono:size=10",
-                                          "IPAPGothic:size=11",
+                                          "CaskaydiaCove Nerd Font Mono:size=9.5",
+                                          "IPAPGothic:size=9.5",
                                         };
-static const char dmenufont[]         =   "CaskaydiaCove Nerd Font Mono:size=10"  ;
+static const char dmenufont[]         =   "CaskaydiaCove Nerd Font Mono:size=9.5"  ;
 static const char col_gray1[]         = "#222222";
 static const char col_gray2[]         = "#444444";
 static const char col_gray3[]         = "#bbbbbb";
 static const char col_gray4[]         = "#eeeeee";
 static const char col_cyan[]          = "#005577";
-static const unsigned int baralpha    = 0xcc;
+static const unsigned int baralpha    = 0xef;
 static const unsigned int borderalpha = OPAQUE;
 
 /* underlining */
@@ -32,24 +32,42 @@ static const int ulineall             = 0; /* 1 show on all, 0 on just active */
 static const int showuline            = 1; /* whether to show uline altogether */
 
 
+static const char COL_UNUSD[]         = "#000000";
+static const char COL_BLACK[]         = "#000000";
+static const char COL_WHITE[]         = "#ffffff";
+
+/* Greens */
+static const char COL_LGGRN[]         = "#00e201";
+static const char COL_DKGRN[]         = "#003201";
+
+/* Reds */
+static const char COL_LTRED[]         = "#e30024";
+static const char COL_CARMN[]         = "#960018";
+static const char COL_DKRED[]         = "#720018";
+
+/* Pink Highlights */
+static const char COL_DPINK[]         = "#bf00ff";
+
+static const char COL_DKCOL[]         = "#1c1c2c";
+static const char COL_LTCOL[]         = "#e30024";
 
 static const char *colors[][3]        = {
 	/*                     fg         bg         border   */
-	[SchemeNorm]       = { "#000000", "#00e200", "#003200" }, 
-	[SchemeSel]        = { "#000000", "#00e200", "#00e200" }, 
+	[SchemeNorm]       = { COL_BLACK, COL_DKCOL, "#003200" }, 
+	[SchemeSel]        = { COL_BLACK, COL_DKCOL, COL_DKCOL }, 
 
     /* Statusbar right {text, background, NOTUSED} */
-    [SchemeStatus]     = { "#ffffff", "#003200", "#000000" }, 
+    [SchemeStatus]     = { COL_WHITE, COL_DKCOL, COL_UNUSD }, 
 
     /* Tagbar left selected {text, background, NOTUSED} */
-    [SchemeTagsSel]    = { "#000000", "#00e200",  "#000000" }, 
+    [SchemeTagsSel]    = { COL_WHITE, COL_DKCOL, COL_UNUSD }, 
     /* Tagbar left unselected {text, background, NOTUSED} */
-    [SchemeTagsNorm]   = { "#ffffff", "#003200", "#000000" },
+    [SchemeTagsNorm]   = { COL_WHITE, COL_DKCOL, COL_UNUSD },
 
     /* Infobar middle selected {text, background, NOTUSED} */
-    [SchemeInfoSel]    = { "#ffffff", "#003200",  "#000000" }, 
+    [SchemeInfoSel]    = { COL_WHITE, COL_DKCOL, COL_UNUSD }, 
     /* Infobar middle unselected {text, background, NOTUSED} */
-    [SchemeInfoNorm]   = { "#ffffff", "#003200", "#000000" },
+    [SchemeInfoNorm]   = { COL_WHITE, COL_DKCOL, COL_UNUSD },
 };
 
 static const unsigned int alphas[][3] = {
@@ -75,19 +93,16 @@ static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
 	{"spranger",    spcmd2},
-	{"keepassxc",   spcmd3},
+	{"spkdbx",      spcmd3},
     {"spncmpcpp",   spcmd4},
 };
                                                                                    
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
-static const char ptagf[] = "[%s %s]"; /* format of a tag label */
+static const char ptagf[] = "[%s] %s"; /* format of a tag label */
 static const char etagf[] = "[%s]"; /* format of an empty tag */
 static const int lcaselbl = 0;     /* 1 means make tag label lowercase */
-
-
-
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -95,7 +110,6 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance  title           tags mask  isfloating  isterminal  noswallow  monitor */
-	{ "Gimp",      NULL,     NULL,           0,         1,          0,           0,        -1 },
 	{ "LibreWolf", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
     { "librewolf", NULL,     NULL,           1 << 8,    0,          0,          -1,        -1 },
 	{ "st",        NULL,     NULL,           0,         0,          1,           0,        -1 },
@@ -103,10 +117,10 @@ static const Rule rules[] = {
 
     { NULL,        NULL,     "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
    
-    { NULL,		   "spterm",		NULL,		SPTAG(0),		1, 0, 1,			 -1 },
-    { NULL,		   "spfm",		NULL,		SPTAG(1),		1, 0, 1			 -1 },
-    { NULL,		   "keepassxc",	NULL,		SPTAG(2),		1, 0, 1			 -1 },
-    { NULL,        "spmp",  NULL,       SPTAG(3),       1, 0, 1,         -1 },
+    { NULL,		   "spterm", NULL,           SPTAG(0),  1,          0,           1,        -1 },
+    { NULL,		   "spfm",	 NULL,           SPTAG(1),  1,          0,           1,        -1 },
+    { NULL,		   "spkdbx", NULL,           SPTAG(2),  1,          0,           1,        -1 },
+    { NULL,        "spmp",   NULL,           SPTAG(3),  1,          0,           1,        -1 },
 
 
 
@@ -160,7 +174,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", COL_DKCOL, "-nf", COL_LTRED, "-sb", COL_DKRED, "-sf", COL_WHITE, "-hp", "librewolf,discord,st,keepassxc,mgba-qt", NULL };
 static const char *termcmd[]  = { "st", NULL };
 static const char *slockcmd[] = { "slock", NULL };
 
@@ -170,21 +184,25 @@ static const char *audiodncmd[] = { "change-audio", "2dB-", "unmute" };
 static const char *audiomtcmd[] = { "change-audio", "toggle" };
 
 // Commands to change brightness
-static const char *lightupcmd[] = { "change-light", "dec", "5" };
-static const char *lightdncmd[] = { "change-light", "inc", "5" };
+static const char *lightupcmd[] = { "change-light", "inc", "5" };
+static const char *lightdncmd[] = { "change-light", "dec", "5" };
+static const char *lightmxcmd[] = { "change-light", "set", "100" };
+static const char *lightmncmd[] = { "change-light", "set", "20" };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
+	{ MODKEY,                       XK_d,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
     { MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slockcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
+
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
+	{ MODKEY|ShiftMask,             XK_i,      incnmaster,     {.i = +1 } },
+	{ MODKEY|ShiftMask,             XK_d,      incnmaster,     {.i = -1 } },
 	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
 	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
+
 	{ MODKEY,                       XK_Return, zoom,           {0} },
 	{ MODKEY,                       XK_Tab,    view,           {0} },
 	{ MODKEY|ShiftMask,             XK_c,      killclient,     {0} },
@@ -208,19 +226,22 @@ static Key keys[] = {
 	{ MODKEY|Mod4Mask|ShiftMask,    XK_0,      defaultgaps,    {0} },
 
     /* Set layouts */
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-    { MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
-    { MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
+	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} }, 
+
     { MODKEY,                       XK_r,      setlayout,      {.v = &layouts[5]} },
     { MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[6]} },
-    // { MODKEY,                       XK_y,      setlayout,      {.v = &layouts[7]} },
-    // { MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[8]} },
-    // { MODKEY|ShiftMask,             XK_o,      setlayout,      {.v = &layouts[9]} },
-    // { MODKEY,                       XK_g,      setlayout,      {.v = &layouts[10]} },
-    // { MODKEY|ShiftMask,             XK_g,      setlayout,      {.v = &layouts[11]} },
-    // { MODKEY|ShiftMask,             XK_h,      setlayout,      {.v = &layouts[12]} },
+
+	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
+	{ MODKEY|ShiftMask,             XK_t,      setlayout,      {.v = &layouts[1]} },
+
+    { MODKEY,                       XK_y,      setlayout,      {.v = &layouts[3]} },
+    { MODKEY|ShiftMask,             XK_y,      setlayout,      {.v = &layouts[4]} },
+    { MODKEY,                       XK_u,      setlayout,      {.v = &layouts[7]} },
+    { MODKEY|ShiftMask,             XK_u,      setlayout,      {.v = &layouts[8]} },
+    { MODKEY,                       XK_o,      setlayout,      {.v = &layouts[9]} },
+    { MODKEY|ShiftMask,             XK_o,      setlayout,      {.v = &layouts[10]} },
+    { MODKEY,                       XK_p,      setlayout,      {.v = &layouts[11]} },
+    { MODKEY|ShiftMask,             XK_p,      setlayout,      {.v = &layouts[12]} },
 
     /* Scratchpads */
     { MODKEY,                       XK_z,      togglescratch,  {.ui = 0 } },
@@ -234,8 +255,10 @@ static Key keys[] = {
     { MODKEY,                       XK_F3,     spawn,          {.v = audiomtcmd } },
 
     /* Shortcuts - Brightness */
-    { MODKEY,                       XK_F8,     spawn,          {.v = lightupcmd } },
-    { MODKEY,                       XK_F9,     spawn,          {.v = lightdncmd } },
+    { MODKEY,                       XK_F8,     spawn,          {.v = lightdncmd } },
+    { MODKEY,                       XK_F9,     spawn,          {.v = lightupcmd } },
+    { MODKEY|ShiftMask,             XK_F8,     spawn,          {.v = lightmncmd } },
+    { MODKEY|ShiftMask,             XK_F9,     spawn,          {.v = lightmxcmd } },
 
 
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
