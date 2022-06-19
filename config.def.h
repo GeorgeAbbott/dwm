@@ -12,10 +12,10 @@ static const int swallowfloating      = 0;        /* 1 means swallow floating wi
 static const int showbar              = 1;        /* 0 means no bar */
 static const int topbar               = 1;        /* 0 means bottom bar */
 static const char *fonts[]            = { 
-                                          "CaskaydiaCove Nerd Font Mono:size=9.5",
+                                          "CodeNewRoman Nerd Font Mono:size=10",
                                           "IPAPGothic:size=9.5",
                                         };
-static const char dmenufont[]         =   "CaskaydiaCove Nerd Font Mono:size=9.5"  ;
+static const char dmenufont[]         =   "CodeNewRoman Nerd Font Mono:size=10"  ;
 static const char col_gray1[]         = "#222222";
 static const char col_gray2[]         = "#444444";
 static const char col_gray3[]         = "#bbbbbb";
