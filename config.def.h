@@ -86,13 +86,13 @@ typedef struct {
 	const void *cmd;
 } Sp;
 const char *spcmd1[] = {"st", "-n", "spterm", "-g", "120x34", NULL };
-const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "ranger", NULL };
+const char *spcmd2[] = {"st", "-n", "spfm", "-g", "144x41", "-e", "lf", NULL };
 const char *spcmd3[] = {"keepassxc", NULL };
 const char *spcmd4[] = {"st", "-n", "spmp", "-g", "144x41", "-e", "ncmpcpp", NULL };
 static Sp scratchpads[] = {
 	/* name          cmd  */
 	{"spterm",      spcmd1},
-	{"spranger",    spcmd2},
+	{"splf",       spcmd2},
 	{"spkdbx",      spcmd3},
     {"spncmpcpp",   spcmd4},
 };
@@ -113,6 +113,8 @@ static const Rule rules[] = {
 	{ "LibreWolf", NULL,         NULL,           1 << 8,    0,          0,          -1,        -1 },
     { "librewolf", NULL,         NULL,           1 << 8,    0,          0,          -1,        -1 },
 	{ "st",        NULL,         NULL,           0,         0,          1,           0,        -1 },
+    { "alacritty", NULL,         NULL,           0,         0,          1,           0,        -1 },
+    { "Alacritty", NULL,         NULL,           0,         0,          1,           0,        -1 },
     { "discord",   NULL,         NULL,           1 << 5,    0,          0,          -1,        -1 },
 
     { NULL,        NULL,         "Event Tester", 0,         0,          0,           1,        -1 }, /* xev */
@@ -174,8 +176,8 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", COL_DKCOL, "-nf", COL_LTRED, "-sb", COL_DKRED, "-sf", COL_WHITE, "-hp", "librewolf,discord,st,keepassxc,mgba-qt", NULL };
-static const char *termcmd[]  = { "st", NULL };
+static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", COL_DKCOL, "-nf", COL_LTRED, "-sb", COL_DKRED, "-sf", COL_WHITE, "-hp", "librewolf,firefox,discord,st,alacritty,keepassxc,mgba-qt", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 static const char *slockcmd[] = { "slock", NULL };
 
 // Commands to change volume
